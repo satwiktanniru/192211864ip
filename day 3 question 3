@@ -1,0 +1,57 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/requestInfo")
+public class RequestInfoServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<html><head><title>Request Information</title></head><body>");
+        out.println("<h1>Request Information</h1>");
+
+        out.println("<h2>Request Parameters:</h2>");
+        out.println("<ul>");
+        request.getParameterMap().forEach((key, value) -> {
+            out.println("<li>" + key + ": " + String.join(", ", (String[]) value) + "</li>");
+        });
+        out.println("</ul>");
+
+        String textFieldInput = request.getParameter("textField");
+        if (textFieldInput != null) {
+            out.println("<h2>Text Field Input:</h2>");
+            out.println("<p>" + textFieldInput + "</p>");
+        }
+
+        String radioButtonInput = request.getParameter("radioButton");
+        if (radioButtonInput != null) {
+            out.println("<h2>Radio Button Selection:</h2>");
+            out.println("<p>" + radioButtonInput + "</p>");
+        }
+
+        String[] checkboxInputs = request.getParameterValues("checkbox");
+        if (checkboxInputs != null && checkboxInputs.length > 0) {
+            out.println("<h2>Checkbox Selections:</h2>");
+            out.println("<ul>");
+            for (String checkboxInput : checkboxInputs) {
+                out.println("<li>" + checkboxInput + "</li>");
+            }
+            out.println("</ul>");
+        }
+
+        String dropdownInput = request.getParameter("dropdown");
+        if (dropdownInput != null) {
+            out.println("<h2>Drop-down Menu Selection:</h2>");
+            out.println("<p>" + dropdownInput + "</p>");
+        }
+
+        out.println("</body></html>");
+    }
+}

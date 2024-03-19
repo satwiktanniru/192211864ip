@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change Paragraph Style</title>
+<style>
+  #college-info {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: black;
+  }
+
+  .highlight {
+    font-weight: bold;
+    color: blue;
+  }
+</style>
+</head>
+<body>
+  <form>
+    <input type="submit" value="Change" id="change-btn">
+  </form>
+  <p id="college-info">This is a paragraph about the college. It provides information about its programs, faculty, and facilities.</p>
+
+  <script>
+    document.getElementById('change-btn').addEventListener('click', function(event) {
+      event.preventDefault(); 
+
+      var paragraph = document.getElementById('college-info');
+      paragraph.style.fontFamily = 'Times New Roman';
+      paragraph.style.fontSize = '20px';
+      paragraph.style.color = 'green';
+    });
+
+    
+    var paragraph = document.getElementById('college-info');
+    paragraph.addEventListener('mouseover', function(event) {
+      if (event.target.tagName === 'SPAN') {
+        event.target.classList.add('highlight');
+      }
+    });
+
+    paragraph.addEventListener('mouseout', function(event) {
+      if (event.target.tagName === 'SPAN') {
+        event.target.classList.remove('highlight');
+      }
+    });
+  </script>
+</body>
+</html>

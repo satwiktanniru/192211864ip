@@ -1,0 +1,24 @@
+<?php
+$states = "Mississippi, Alabama, Massachusetts, Kansas";
+
+preg_match_all('/\b\w*xas\b/i', $states, $matches);
+$wordEndsInXas = $matches[0];
+
+preg_match_all('/\bM\w+s\b/i', $states, $matches);
+$wordBeginsWithMEndsWithS = $matches[0];
+
+$statesArray = explode(", ", $states);
+
+echo "Words in \$states that end in 'xas':<br>";
+foreach ($wordEndsInXas as $word) {
+    echo $word . "<br>";
+}
+
+echo "<br>Words in \$states that begin with 'M' and end with 's':<br>";
+foreach ($wordBeginsWithMEndsWithS as $word) {
+    echo $word . "<br>";
+}
+
+echo "<br>Array \$statesArray:<br>";
+print_r($statesArray);
+?>

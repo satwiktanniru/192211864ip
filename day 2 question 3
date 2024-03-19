@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>String Operations</title>
+</head>
+<body>
+  <h2>Enter Strings:</h2>
+  <textarea id="input-text" rows="4" cols="50"></textarea><br>
+  <button onclick="outputStartsWithЪ()">Output Strings Starting with 'Ъ'</button>
+  <h3>Result:</h3>
+  <textarea id="output-text" rows="4" cols="50" readonly></textarea><br>
+  <button onclick="countOccurrences()">Count Occurrences of Letters</button>
+  <h3>Occurrences of Letters:</h3>
+  <div id="occurrences"></div>
+
+  <script>
+    function outputStartsWithЪ() {
+      var input = document.getElementById('input-text').value.split('\n');
+      var output = '';
+      for (var i = 0; i < input.length; i++) {
+        if (input[i].charAt(0) === 'Ъ') {
+          output += input[i] + '\n';
+        }
+      }
+      document.getElementById('output-text').value = output;
+    }
+
+    function countOccurrences() {
+      var input = document.getElementById('input-text').value;
+      var occurrences = {};
+      for (var i = 0; i < input.length; i++) {
+        var char = input.charAt(i);
+        if (occurrences[char]) {
+          occurrences[char]++;
+        } else {
+          occurrences[char] = 1;
+        }
+      }
+      var output = '';
+      for (var key in occurrences) {
+        if (key !== '\n' && key !== '\r') {
+          output += "'" + key + "': " + occurrences[key] + '\n';
+        }
+      }
+      document.getElementById('occurrences').innerText = output;
+    }
+  </script>
+</body>
+</html>

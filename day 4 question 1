@@ -1,0 +1,30 @@
+ <?php
+if (isset($_COOKIE['test_cookie'])) {
+    $cookieEnabled = true;
+} else {
+    $cookieEnabled = false;
+}
+
+if ($cookieEnabled) {
+    echo "Cookies are enabled.";
+} else {
+    echo "Cookies are disabled. Please enable cookies in your browser settings.";
+}
+
+setcookie('test_cookie', 'test_value', time() + 3600, '/');
+?>
+
+
+  
+ <?php
+if (isset($_COOKIE['user'])) {
+    $currentValue = $_COOKIE['user'];
+    
+    $newValue = $currentValue . "_updated";
+    
+    setcookie('user', $newValue, time() + (86400 * 30), '/'); 
+    echo "Cookie value updated successfully!";
+} else {
+    echo "Cookie does not exist.";
+}
+?>

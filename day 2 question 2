@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Append Image Element</title>
+</head>
+<body>
+<button id="append-img-btn">Append Image</button>
+
+<script>
+document.getElementById('append-img-btn').addEventListener('click', function() {
+    
+    var imgElement = document.createElement('img');
+    
+    
+    imgElement.src = 'https://via.placeholder.com/150';
+    imgElement.alt = 'Placeholder Image';
+    imgElement.width = 150;
+    imgElement.height = 150;
+    
+    
+    document.body.appendChild(imgElement);
+});
+</script>
+</body>
+</html>
